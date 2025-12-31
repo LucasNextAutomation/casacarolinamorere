@@ -7,15 +7,13 @@ Beachfront eco-house rental website for a property in Moreré, Bahia, Brazil.
 - **Build Tool**: Vite 6
 - **Styling**: Tailwind CSS (CDN)
 - **Routing**: React Router DOM 7
-- **Icons**: Lucide React
+- **Deployment**: Vercel (Auto-deploy from GitHub)
 
 ## Infrastructure
-- **Domain**: casacarolinamorere.com (Scaleway DNS)
-- **VPS**: Scaleway Ubuntu
-- **Web Server**: Caddy (auto HTTPS via Let's Encrypt)
-- **Media Bucket**: https://casacarolinamorere-media.s3.fr-par.scw.cloud
-- **Backend**: Node.js for Stripe, email, calendar sync
-- **GitHub**: https://github.com/LucasNextAutomation/casacarolinamorere
+- **Domain**: casacarolinamorere.com (Scaleway DNS pointing to Vercel)
+- **Hosting**: Vercel
+- **Media**: https://casacarolinamorere-media.s3.fr-par.scw.cloud
+- **Code**: https://github.com/LucasNextAutomation/casacarolinamorere
 
 ## Development
 
@@ -23,42 +21,13 @@ Beachfront eco-house rental website for a property in Moreré, Bahia, Brazil.
 # Install dependencies
 npm install
 
-# Start dev server (http://localhost:3000)
+# Start dev server
 npm run dev
-
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
 ```
 
-## Deploy to VPS
+## Deployment
+Push to `main` branch to trigger automatic deployment on Vercel:
 
 ```bash
-# Option 1: From local machine
-./deploy.sh
-
-# Option 2: SSH into VPS, then:
-cd /var/www/casacarolinamorere
-git pull origin main
-npm install && npm run build
+git push origin main
 ```
-
-## Project Structure
-
-```
-├── components/     # Navbar, Footer
-├── pages/          # Home, TheHouse, Experience, Location, Reviews, Booking
-├── services/       # Calendar sync, email notifications, iCal parsing
-├── App.tsx         # Main app with language context + routing
-├── constants.ts    # Translations, pricing, calendar config
-└── types.ts        # TypeScript interfaces
-```
-
-## Features
-- Multi-language support (PT/EN/FR)
-- Calendar integration with Airbnb iCal sync
-- Booking request form with Stripe payments
-- Guest reviews section
-- Location info with local attractions
