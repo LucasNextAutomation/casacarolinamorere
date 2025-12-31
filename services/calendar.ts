@@ -63,44 +63,23 @@ export const isDateInRange = (dateStr: string, startStr: string | null, endStr: 
 export const fetchBlockedDates = async (): Promise<{ dates: Set<string>; lastSynced: string }> => {
   const blockedDates = new Set<string>();
   let lastSynced = "Sync failed";
-  let successCount = 0;
 
   try {
-    const fetchPromises = GOOGLE_CALENDAR_CONFIG.ICAL_URLS.map(async (url) => {
-      // Aggressive cache-busting
-      const cacheBuster = `nocache=${Date.now()}_${Math.random().toString(36).substring(7)}`;
-      const targetUrl = url.includes('?')
-        ? `${url}&${cacheBuster}`
-        : `${url}?${cacheBuster}`;
+    // Call our own Vercel API function
+    const response = await fetch('/api/calendar');
 
-      const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`;
+    if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
 
-      try {
-        const response = await fetch(proxyUrl);
-        if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+    const data = await response.json();
 
-        const data = await response.json();
-        if (data && data.contents) {
-          const externalDates = parseICSFeed(data.contents);
-          if (externalDates && externalDates.length > 0) {
-            return externalDates;
-          }
-        }
-      } catch (err) {
-        console.warn(`Failed to fetch calendar ${url}:`, err);
-      }
-      return [];
-    });
+    if (data.dates && Array.isArray(data.dates)) {
+      data.dates.forEach((d: string) => blockedDates.add(d));
 
-    const results = await Promise.all(fetchPromises);
+      // Use the server timestamp if available, else local
+      const dateObj = data.lastSynced ? new Date(data.lastSynced) : new Date();
+      lastSynced = dateObj.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-    results.flat().forEach(date => blockedDates.add(date));
-
-    if (blockedDates.size > 0) {
-      lastSynced = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
       console.log(`Sync Successful. Total blocked dates: ${blockedDates.size}`);
-    } else {
-      lastSynced = "No active blocks found";
     }
 
   } catch (error) {
