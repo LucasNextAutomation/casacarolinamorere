@@ -1,20 +1,63 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Casa Carolina Moreré
 
-# Run and deploy your AI Studio app
+Beachfront eco-house rental website for a property in Moreré, Bahia, Brazil.
 
-This contains everything you need to run your app locally.
+## Tech Stack
+- **Framework**: React 19 + TypeScript
+- **Build Tool**: Vite 6
+- **Styling**: Tailwind CSS (CDN)
+- **Routing**: React Router DOM 7
+- **Icons**: Lucide React
 
-View your app in AI Studio: https://ai.studio/apps/drive/1S0oJ5dVSqFXniKBgRirnqHqwDHkeEth6
+## Development
 
-## Run Locally
+```bash
+# Install dependencies
+npm install
 
-**Prerequisites:**  Node.js
+# Start dev server (http://localhost:3000)
+npm run dev
 
+# Build for production
+npm run build
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+# Preview production build
+npm run preview
+```
+
+## Deploy to VPS
+
+1. Edit `deploy.sh` and set your VPS IP address
+2. Run the deploy script:
+```bash
+./deploy.sh
+```
+
+Or manually:
+```bash
+npm run build
+rsync -avz --delete dist/ user@YOUR_VPS_IP:/var/www/casacarolinamorere/
+```
+
+## Project Structure
+
+```
+├── components/     # Navbar, Footer
+├── pages/          # Home, TheHouse, Experience, Location, Reviews, Booking
+├── services/       # Calendar sync, email notifications, iCal parsing
+├── App.tsx         # Main app with language context + routing
+├── constants.ts    # Translations, pricing, calendar config
+└── types.ts        # TypeScript interfaces
+```
+
+## Features
+- Multi-language support (PT/EN/FR)
+- Calendar integration with Airbnb iCal sync
+- Booking request form
+- Guest reviews section
+- Location info with local attractions
+
+## Infrastructure
+- **Domain**: casacarolinamorere.com
+- **Hosted on**: Scaleway VPS (Ubuntu)
+- **Web Server**: Caddy (auto HTTPS)
