@@ -4,7 +4,7 @@ import { parseICSFeed } from './ical';
 
 export interface DayInfo {
   date: Date;
-  dateString: string; 
+  dateString: string;
   isCurrentMonth: boolean;
   isToday: boolean;
   isBlocked: boolean;
@@ -67,21 +67,21 @@ export const fetchBlockedDates = async (): Promise<{ dates: Set<string>; lastSyn
   try {
     // Aggressive cache-busting
     const cacheBuster = `nocache=${Date.now()}_${Math.random().toString(36).substring(7)}`;
-    const targetUrl = GOOGLE_CALENDAR_CONFIG.ICAL_URL.includes('?') 
+    const targetUrl = GOOGLE_CALENDAR_CONFIG.ICAL_URL.includes('?')
       ? `${GOOGLE_CALENDAR_CONFIG.ICAL_URL}&${cacheBuster}`
       : `${GOOGLE_CALENDAR_CONFIG.ICAL_URL}?${cacheBuster}`;
-      
-    const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`;
-    
+
+    const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}&disableCache=true`;
+
     const response = await fetch(proxyUrl);
     if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
-    
+
     const data = await response.json();
-    
+
     // Ensure data contents exist before processing
     if (data && data.contents) {
       const externalDates = parseICSFeed(data.contents);
-      
+
       if (externalDates && externalDates.length > 0) {
         externalDates.forEach(d => blockedDates.add(d));
         lastSynced = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
@@ -94,7 +94,7 @@ export const fetchBlockedDates = async (): Promise<{ dates: Set<string>; lastSyn
     } else {
       throw new Error("Invalid response structure from proxy");
     }
-    
+
   } catch (error) {
     console.error("Critical Sync Failure:", error);
     lastSynced = "Connection Error";

@@ -10,7 +10,7 @@ Beachfront eco-house rental website for a property in Moreré, Bahia, Brazil.
 - **Deployment**: Vercel (Auto-deploy from GitHub)
 
 ## Infrastructure
-- **Domain**: casacarolinamorere.com (Scaleway DNS pointing to Vercel)
+- **Domain**: casacarolinamorere.com (Scaleway DNS pointing to Vercel `216.198.79.1`)
 - **Hosting**: Vercel
 - **Media**: https://casacarolinamorere-media.s3.fr-par.scw.cloud
 - **Code**: https://github.com/LucasNextAutomation/casacarolinamorere

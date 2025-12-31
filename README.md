@@ -10,7 +10,7 @@ Beachfront eco-house rental website for a property in Moreré, Bahia, Brazil.
 
 ## Infrastructure
 - **Live Site**: https://casacarolinamorere.com
-- **Domain**: Scaleway DNS (A record points to Vercel `76.76.21.21`)
+- **Domain**: Scaleway DNS (A record points to Vercel `216.198.79.1`)
 - **Media Storage**: Scaleway S3
 
 ## Development

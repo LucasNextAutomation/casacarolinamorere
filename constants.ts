@@ -3,7 +3,7 @@ import { Language, TranslationStructure } from './types';
 
 export const GOOGLE_CALENDAR_CONFIG = {
   // Primary iCal feed provided by the user (Google Calendar aggregating Airbnb)
-  ICAL_URL: 'https://calendar.google.com/calendar/ical/6v8bms1mh5nbc5bp8r4c0j5l9o6n6g7u%40import.calendar.google.com/public/basic.ics',
+  ICAL_URL: 'https://www.airbnb.fr/calendar/ical/1574720018210550640.ics?t=fdcf0013cbe248c5a65c415545b3d98d',
   // The Calendar ID for API access
   CALENDAR_ID: 'carophe@hotmail.com',
   // Minimum stay in nights
