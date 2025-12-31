@@ -73,7 +73,7 @@ export const fetchBlockedDates = async (): Promise<{ dates: Set<string>; lastSyn
         ? `${url}&${cacheBuster}`
         : `${url}?${cacheBuster}`;
 
-      const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}&disableCache=true`;
+      const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`;
 
       try {
         const response = await fetch(proxyUrl);
