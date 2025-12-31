@@ -34,20 +34,28 @@ export const generateICSFeed = (bookings: any[]) => {
  */
 export const parseICSFeed = (icsData: string): string[] => {
   const blockedDates = new Set<string>();
-  
+
   // 1. Unfold lines (Standard iCal lines split by CRLF + Space/Tab)
   const unfolded = icsData.replace(/\r?\n[ \t]/g, '');
-  
+
   // 2. Split into events
   const vevents = unfolded.split(/BEGIN:VEVENT/i);
-  
+
   vevents.slice(1).forEach(eventBlock => {
     const cleanBlock = eventBlock.split(/END:VEVENT/i)[0];
     const lines = cleanBlock.split(/\r?\n/);
-    
-    // Standard block check: Ignore "Free" events or cancelled ones
+
+    // Standard block check: Ignore "Free" events, unless explicitly named "BOOKED"
+    // We scan lines first to find summary for this check
+    let summary = '';
+    lines.forEach(line => {
+      if (line.toUpperCase().startsWith('SUMMARY')) summary = line.substring(line.indexOf(':') + 1);
+    });
+
     const isTransparent = lines.some(line => line.toUpperCase().startsWith('TRANSP:TRANSPARENT'));
-    if (isTransparent) return;
+    const isExplicitlyBooked = summary.toLowerCase().includes('booked') || summary.toLowerCase().includes('reserved');
+
+    if (isTransparent && !isExplicitlyBooked) return;
 
     let dtStartStr = '';
     let dtEndStr = '';
@@ -75,7 +83,7 @@ export const parseICSFeed = (icsData: string): string[] => {
 
       // If no end date, treat as 1-day event (standard iCal safety)
       if (!dtEndStr) dtEndStr = dtStartStr;
-      
+
       const eY = parseInt(dtEndStr.substring(0, 4));
       const eM = parseInt(dtEndStr.substring(4, 6)) - 1;
       const eD = parseInt(dtEndStr.substring(6, 8));
@@ -87,7 +95,7 @@ export const parseICSFeed = (icsData: string): string[] => {
       // Loop through range: DTEND is non-inclusive in the iCal spec
       // We block from start date up until (but not including) the end date
       let current = new Date(start);
-      
+
       // Safety check: if end <= start for some reason (broken feed), block at least start day
       if (end <= start) {
         const y = current.getFullYear();

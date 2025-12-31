@@ -5,7 +5,7 @@ export const GOOGLE_CALENDAR_CONFIG = {
   // Primary iCal feed provided by the user (Google Calendar aggregating Airbnb)
   ICAL_URLS: [
     'https://www.airbnb.fr/calendar/ical/1574720018210550640.ics?t=fdcf0013cbe248c5a65c415545b3d98d',
-    'https://calendar.google.com/calendar/ical/carophe%40hotmail.com/public/basic.ics'
+    'https://calendar.google.com/calendar/ical/carophe%40hotmail.com/private-9e8107756e56cb4dde9de08e68912c5e/basic.ics'
   ],
   // The Calendar ID for API access
   CALENDAR_ID: 'carophe@hotmail.com',
