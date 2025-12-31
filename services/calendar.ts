@@ -63,36 +63,44 @@ export const isDateInRange = (dateStr: string, startStr: string | null, endStr: 
 export const fetchBlockedDates = async (): Promise<{ dates: Set<string>; lastSynced: string }> => {
   const blockedDates = new Set<string>();
   let lastSynced = "Sync failed";
+  let successCount = 0;
 
   try {
-    // Aggressive cache-busting
-    const cacheBuster = `nocache=${Date.now()}_${Math.random().toString(36).substring(7)}`;
-    const targetUrl = GOOGLE_CALENDAR_CONFIG.ICAL_URL.includes('?')
-      ? `${GOOGLE_CALENDAR_CONFIG.ICAL_URL}&${cacheBuster}`
-      : `${GOOGLE_CALENDAR_CONFIG.ICAL_URL}?${cacheBuster}`;
+    const fetchPromises = GOOGLE_CALENDAR_CONFIG.ICAL_URLS.map(async (url) => {
+      // Aggressive cache-busting
+      const cacheBuster = `nocache=${Date.now()}_${Math.random().toString(36).substring(7)}`;
+      const targetUrl = url.includes('?')
+        ? `${url}&${cacheBuster}`
+        : `${url}?${cacheBuster}`;
 
-    const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}&disableCache=true`;
+      const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}&disableCache=true`;
 
-    const response = await fetch(proxyUrl);
-    if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+      try {
+        const response = await fetch(proxyUrl);
+        if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
 
-    const data = await response.json();
-
-    // Ensure data contents exist before processing
-    if (data && data.contents) {
-      const externalDates = parseICSFeed(data.contents);
-
-      if (externalDates && externalDates.length > 0) {
-        externalDates.forEach(d => blockedDates.add(d));
-        lastSynced = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-        console.log(`Sync Successful. Received ${externalDates.length} blocked dates.`);
-      } else {
-        // Handle cases where feed is empty or malformed but request succeeded
-        console.warn("Feed parsed successfully but returned no blocked dates.");
-        lastSynced = "No active blocks found";
+        const data = await response.json();
+        if (data && data.contents) {
+          const externalDates = parseICSFeed(data.contents);
+          if (externalDates && externalDates.length > 0) {
+            return externalDates;
+          }
+        }
+      } catch (err) {
+        console.warn(`Failed to fetch calendar ${url}:`, err);
       }
+      return [];
+    });
+
+    const results = await Promise.all(fetchPromises);
+
+    results.flat().forEach(date => blockedDates.add(date));
+
+    if (blockedDates.size > 0) {
+      lastSynced = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      console.log(`Sync Successful. Total blocked dates: ${blockedDates.size}`);
     } else {
-      throw new Error("Invalid response structure from proxy");
+      lastSynced = "No active blocks found";
     }
 
   } catch (error) {
