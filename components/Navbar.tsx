@@ -13,7 +13,7 @@ const Navbar: React.FC = () => {
   const navigate = useNavigate();
 
   const isHome = location.pathname === '/';
-  
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 80);
@@ -37,15 +37,14 @@ const Navbar: React.FC = () => {
   const isNavSolid = scrolled || isOpen || !isHome;
   const textColor = isNavSolid ? 'text-ocean' : 'text-white text-shadow-subtle';
   const bgColor = isNavSolid ? 'bg-white shadow-md' : 'bg-transparent';
-  const btnColor = isNavSolid 
-    ? 'bg-ocean text-white hover:bg-ocean-800' 
+  const btnColor = isNavSolid
+    ? 'bg-ocean text-white hover:bg-ocean-800'
     : 'bg-white/10 text-white backdrop-blur-md border border-white/30 hover:bg-white hover:text-ocean';
 
   return (
     <nav
-      className={`fixed w-full z-50 transition-all duration-700 ease-in-out ${
-        isNavSolid ? 'py-4 ' + bgColor : 'py-8'
-      }`}
+      className={`fixed w-full z-50 transition-all duration-700 ease-in-out ${isNavSolid ? 'py-4 ' + bgColor : 'py-8'
+        }`}
     >
       {/* Enhanced top gradient for better contrast on images */}
       {isHome && !scrolled && (
@@ -68,9 +67,8 @@ const Navbar: React.FC = () => {
             <Link
               key={link.path}
               to={link.path}
-              className={`text-[10px] font-bold uppercase tracking-luxury hover:text-sunlight transition-all duration-300 ${textColor} ${
-                location.pathname === link.path ? 'opacity-100' : 'opacity-70 hover:opacity-100'
-              }`}
+              className={`text-[10px] font-bold uppercase tracking-luxury hover:text-sunlight transition-all duration-300 ${textColor} ${location.pathname === link.path ? 'opacity-100' : 'opacity-70 hover:opacity-100'
+                }`}
             >
               {link.name}
             </Link>
@@ -81,18 +79,19 @@ const Navbar: React.FC = () => {
               {language.toUpperCase()}
               <ChevronDown className="ml-1 w-3 h-3" />
             </button>
-            <div className="absolute right-0 mt-3 w-44 bg-white shadow-2xl py-4 hidden group-hover:block border border-gray-100 rounded-sm animate-in fade-in slide-in-from-top-2">
-              {[Language.PT, Language.EN, Language.FR, Language.ES].map((lang) => (
-                <button
-                  key={lang}
-                  onClick={() => setLanguage(lang)}
-                  className={`block w-full text-left px-6 py-2.5 text-[10px] font-bold uppercase tracking-widest hover:bg-sand-50 transition-colors ${
-                    language === lang ? 'text-ocean' : 'text-gray-400'
-                  }`}
-                >
-                  {lang === Language.PT ? 'Português' : lang === Language.EN ? 'English' : lang === Language.FR ? 'Français' : 'Español'}
-                </button>
-              ))}
+            <div className="absolute right-0 pt-4 w-44 hidden group-hover:block animate-in fade-in slide-in-from-top-2">
+              <div className="bg-white shadow-2xl py-4 border border-gray-100 rounded-sm">
+                {[Language.PT, Language.EN, Language.FR, Language.ES].map((lang) => (
+                  <button
+                    key={lang}
+                    onClick={() => setLanguage(lang)}
+                    className={`block w-full text-left px-6 py-2.5 text-[10px] font-bold uppercase tracking-widest hover:bg-sand-50 transition-colors ${language === lang ? 'text-ocean' : 'text-gray-400'
+                      }`}
+                  >
+                    {lang === Language.PT ? 'Português' : lang === Language.EN ? 'English' : lang === Language.FR ? 'Français' : 'Español'}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -115,9 +114,8 @@ const Navbar: React.FC = () => {
 
       {/* Mobile menu overlay */}
       <div
-        className={`fixed inset-0 bg-white z-40 transform transition-transform duration-700 ease-in-out pt-32 px-10 lg:hidden ${
-          isOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
+        className={`fixed inset-0 bg-white z-40 transform transition-transform duration-700 ease-in-out pt-32 px-10 lg:hidden ${isOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}
       >
         <div className="flex flex-col space-y-10">
           {navLinks.map((link, i) => (
@@ -131,15 +129,15 @@ const Navbar: React.FC = () => {
             </Link>
           ))}
           <div className="pt-10 border-t border-gray-100 grid grid-cols-2 gap-y-6">
-             {Object.values(Language).map((lang) => (
-               <button 
+            {Object.values(Language).map((lang) => (
+              <button
                 key={lang}
-                onClick={() => setLanguage(lang)} 
+                onClick={() => setLanguage(lang)}
                 className={`text-xs uppercase font-bold tracking-luxury text-left ${language === lang ? 'text-ocean underline underline-offset-8' : 'text-gray-300'}`}
-               >
-                 {lang}
-               </button>
-             ))}
+              >
+                {lang}
+              </button>
+            ))}
           </div>
           <button
             onClick={() => navigate('/booking')}
