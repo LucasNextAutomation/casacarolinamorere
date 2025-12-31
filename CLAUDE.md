@@ -9,6 +9,14 @@ Beachfront eco-house rental website for a property in Moreré, Bahia, Brazil.
 - **Routing**: React Router DOM 7
 - **Icons**: Lucide React
 
+## Infrastructure
+- **Domain**: casacarolinamorere.com (Scaleway DNS)
+- **VPS**: Scaleway Ubuntu
+- **Web Server**: Caddy (auto HTTPS via Let's Encrypt)
+- **Media Bucket**: https://casacarolinamorere-media.s3.fr-par.scw.cloud
+- **Backend**: Node.js for Stripe, email, calendar sync
+- **GitHub**: https://github.com/LucasNextAutomation/casacarolinamorere
+
 ## Development
 
 ```bash
@@ -25,6 +33,18 @@ npm run build
 npm run preview
 ```
 
+## Deploy to VPS
+
+```bash
+# Option 1: From local machine
+./deploy.sh
+
+# Option 2: SSH into VPS, then:
+cd /var/www/casacarolinamorere
+git pull origin main
+npm install && npm run build
+```
+
 ## Project Structure
 
 ```
@@ -39,9 +59,6 @@ npm run preview
 ## Features
 - Multi-language support (PT/EN/FR)
 - Calendar integration with Airbnb iCal sync
-- Booking request form
+- Booking request form with Stripe payments
 - Guest reviews section
 - Location info with local attractions
-
-## Deployment
-Deployed on Vercel. Push to main branch to trigger auto-deploy.
