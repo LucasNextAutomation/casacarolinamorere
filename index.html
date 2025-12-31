@@ -1,115 +1,138 @@
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Casa Carolina Moreré - Beachfront Eco House</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://js.stripe.com/v3/"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&display=swap" rel="stylesheet">
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              ocean: {
-                DEFAULT: '#0E3B32',
-                50: '#f0f5f4',
-                100: '#dae7e5',
-                200: '#b8ced0',
-                800: '#0a2c26',
-                900: '#071f1b',
-              },
-              sand: {
-                DEFAULT: '#E8D8BA',
-                50: '#faf8f4',
-                100: '#f4ecd9',
-                200: '#ebd9b4',
-              },
-              sea: '#1F6F8B',
-              sunlight: '#D97706',
-              offwhite: '#F2F2F0',
-              charcoal: '#1A1A1A',
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Casa Carolina Moreré - Beachfront Eco House</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://js.stripe.com/v3/"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&display=swap"
+    rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ocean: {
+              DEFAULT: '#052E25', // Deeper, more luxurious green
+              50: '#F2F5F4',
+              100: '#DDE6E4',
+              200: '#BBCDC9',
+              800: '#0A332B',
+              900: '#021A15',
             },
-            fontFamily: {
-              serif: ['"Playfair Display"', 'serif'],
-              sans: ['"Inter"', 'sans-serif'],
+            sand: {
+              DEFAULT: '#E6E2D6', // Less yellow, more linen/stone
+              50: '#FAF9F6',
+              100: '#F5F2EB',
+              200: '#EBE6D9',
             },
-            letterSpacing: {
-              'luxury': '0.35em',
-              'premium': '0.15em',
-              'tightest': '-0.045em',
-            },
-            lineHeight: {
-              'tighter': '1.1',
-              'tightest': '1.05',
-              'relaxed-extra': '1.85',
-            }
+            sea: '#1A5F7A', // Slightly muted teal
+            sunlight: '#B38B59', // Bronze/Gold instead of Orange
+            offwhite: '#F9F9F7', // Warmer white
+            charcoal: '#121212',
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'serif'],
+            sans: ['"Inter"', 'sans-serif'],
+          },
+          letterSpacing: {
+            'luxury': '0.4em',
+            'premium': '0.2em',
+            'tightest': '-0.05em',
+          },
+          lineHeight: {
+            'tighter': '1.05',
+            'tightest': '1',
+            'relaxed-extra': '1.9',
+          },
+          boxShadow: {
+            'premium': '0 20px 40px -10px rgba(0, 0, 0, 0.15)',
+            'premium-hover': '0 30px 60px -12px rgba(0, 0, 0, 0.25)',
           }
         }
       }
-    </script>
-    <style>
+    }
+  </script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+      font-size: 16px;
+    }
+
+    @media (min-width: 1536px) {
       html {
-        scroll-behavior: smooth;
-        scroll-padding-top: 100px;
-        font-size: 16px;
+        font-size: 18px;
       }
-      @media (min-width: 1536px) {
-        html { font-size: 18px; }
-      }
-      body {
-        background-color: #F2F2F0;
-        color: #1A1A1A;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-rendering: optimizeLegibility;
-      }
-      .no-scrollbar::-webkit-scrollbar {
-        display: none;
-      }
-      .no-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-      }
-      
-      h1, h2, h3 {
-        letter-spacing: -0.015em;
-      }
+    }
 
-      .text-shadow-premium {
-        text-shadow: 0 8px 24px rgba(0,0,0,0.35);
-      }
-      .text-shadow-subtle {
-        text-shadow: 0 2px 8px rgba(0,0,0,0.2);
-      }
+    body {
+      background-color: #F2F2F0;
+      color: #1A1A1A;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
 
-      .bg-blocked-pattern {
-        background-image: repeating-linear-gradient(
-          -45deg,
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    h1,
+    h2,
+    h3 {
+      letter-spacing: -0.015em;
+    }
+
+    .text-shadow-premium {
+      text-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    .text-shadow-subtle {
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .bg-blocked-pattern {
+      background-image: repeating-linear-gradient(-45deg,
           transparent,
           transparent 4px,
           rgba(14, 59, 50, 0.1) 4px,
-          rgba(14, 59, 50, 0.1) 8px
-        );
+          rgba(14, 59, 50, 0.1) 8px);
+    }
+
+    @keyframes premium-pulse {
+
+      0%,
+      100% {
+        opacity: 0.3;
       }
 
-      @keyframes premium-pulse {
-        0%, 100% { opacity: 0.3; }
-        50% { opacity: 0.7; }
+      50% {
+        opacity: 0.7;
       }
-      .animate-premium-pulse {
-        animation: premium-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-      }
-    </style>
+    }
 
-<link rel="stylesheet" href="/index.css">
+    .animate-premium-pulse {
+      animation: premium-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+  </style>
+
+  <link rel="stylesheet" href="/index.css">
 </head>
-  <body>
-    <div id="root"></div>
+
+<body>
+  <div id="root"></div>
   <script type="module" src="/index.tsx"></script>
 </body>
+
 </html>
