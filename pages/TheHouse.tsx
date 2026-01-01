@@ -14,11 +14,12 @@ const TheHouse: React.FC = () => {
       subtitle: "The Living Experience",
       description: "The ground floor is designed as a vast open-air pavilion. It seamlessly connects the gourmet kitchen and the main lounge directly to the beach deck, allowing the sea breeze to flow freely throughout.",
       images: [
-        { url: "salon1.jpeg", label: "Main Lounge", span: "col-span-2 row-span-2 md:col-span-3 md:row-span-2" },
+        { url: "salonprincipal.jpeg", label: "Main Lounge", span: "col-span-2 row-span-2 md:col-span-3 md:row-span-2" },
         { url: "cuisine.jpg", label: "Chef's Kitchen", span: "col-span-1 row-span-1 md:col-span-1 md:row-span-1" },
         { url: "TerrasseEnBas.jpeg", label: "Beach Deck", span: "col-span-1 row-span-1 md:col-span-1 md:row-span-1" },
-        { url: "salon2.jpeg", label: "Lounge Detail", span: "col-span-2 row-span-1 md:col-span-2 md:row-span-1" },
-        { url: "panorama%20rdc.jpg", label: "Open Architecture", span: "col-span-2 row-span-1 md:col-span-2 md:row-span-1" }
+        { url: "deuxiemesalon.jpeg", label: "Second Lounge", span: "col-span-2 row-span-1 md:col-span-2 md:row-span-1" },
+        { url: "salon2.jpeg", label: "Lounge Detail", span: "col-span-1 row-span-1 md:col-span-1 md:row-span-1" },
+        { url: "panorama%20rdc.jpg", label: "Open Architecture", span: "col-span-1 row-span-1 md:col-span-1 md:row-span-1" }
       ]
     },
     {
@@ -62,10 +63,10 @@ const TheHouse: React.FC = () => {
       {/* Premium Header */}
       <section className="relative h-[95vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-black/50 z-10"></div>
-        <img 
-          src={`${baseUrl}Maison%20depuis%20la%20plage.jpg`} 
-          className="absolute inset-0 w-full h-full object-cover scale-105" 
-          alt="Casa Carolina from the beach" 
+        <img
+          src={`${baseUrl}Maison%20depuis%20la%20plage.jpg`}
+          className="absolute inset-0 w-full h-full object-cover scale-105"
+          alt="Casa Carolina from the beach"
         />
         <div className="relative z-20 text-center px-6">
           <span className="text-sand font-black text-[11px] md:text-xs uppercase tracking-luxury mb-8 block text-shadow-subtle">The Property</span>
@@ -104,12 +105,12 @@ const TheHouse: React.FC = () => {
               <div className={`lg:col-span-7 ${sIdx % 2 === 1 ? 'lg:order-1' : ''}`}>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 auto-rows-[300px] md:auto-rows-[450px]">
                   {section.images.map((img, iIdx) => (
-                    <div 
-                      key={iIdx} 
+                    <div
+                      key={iIdx}
                       className={`group relative overflow-hidden rounded-sm shadow-[0_30px_60px_-15px_rgba(0,0,0,0.18)] hover:shadow-[0_60px_120px_-30px_rgba(0,0,0,0.3)] transition-all duration-700 ease-out border border-black/5 ${img.span}`}
                     >
-                      <img 
-                        src={`${baseUrl}${img.url}`} 
+                      <img
+                        src={`${baseUrl}${img.url}`}
                         alt={img.label}
                         className="w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-110"
                         loading="lazy"
@@ -136,7 +137,7 @@ const TheHouse: React.FC = () => {
           <p className="text-white/60 mb-24 text-xl md:text-3xl font-light leading-relaxed-extra max-w-3xl mx-auto">
             The house is open year-round, following the rhythm of the tides and the bahian sun. Experience authentic luxury where nature is the main architect.
           </p>
-          <button 
+          <button
             onClick={() => window.location.hash = '#/booking'}
             className="px-24 py-8 bg-white text-ocean font-black text-[12px] uppercase tracking-luxury hover:bg-sand transition-all duration-500 shadow-2xl active:scale-95 transform hover:-translate-y-2"
           >
