@@ -211,7 +211,7 @@ export const TRANSLATIONS: Record<Language, TranslationStructure> = {
       villageTitle: "Vida en Moreré",
       villageDesc: "Un tranquilo pueblo de pescadores con caminos de arena y piscinas naturales.",
       staffTitle: "Hospitalidad",
-      staffDesc: "Ronaldo (casero) y Zil (cocinera/limpieza) são el coração da casa. Serviço de refeições opcional."
+      staffDesc: "Ronaldo (cuidador) y Zil (cocinera/limpieza) son el corazón de la casa. Servicio de comidas opcional."
     },
     booking: {
       title: "Solicitar Reserva",
