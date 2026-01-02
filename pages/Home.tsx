@@ -11,69 +11,81 @@ const Home: React.FC = () => {
   return (
     <div className="-mt-32">
       {/* Hero Section */}
-      <section className="relative h-screen min-h-[850px] w-full overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105 animate-[pulse_30s_ease-in-out_infinite]"
-          style={{ backgroundImage: `url('${baseUrl}Maison%20depuis%20la%20plage.jpg')` }}
-        >
-          {/* Darker overlay for better text contrast with new gold colors */}
-          <div className="absolute inset-0 bg-black/50"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/80"></div>
+      <section className="relative h-screen min-h-[750px] w-full overflow-hidden">
+        {/* Background with subtle zoom */}
+        <div className="absolute inset-0">
+          <img
+            src={`${baseUrl}Maison%20depuis%20la%20plage.jpg`}
+            alt="Casa Carolina Moreré"
+            className="w-full h-full object-cover scale-105"
+            style={{ animation: 'scale-in 20s ease-out forwards' }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/70" />
         </div>
 
-        <div className="relative h-full flex flex-col justify-center items-center text-center px-6 max-w-screen-2xl mx-auto pt-32">
-          <div className="mb-12 animate-in fade-in slide-in-from-bottom-6 duration-[1500ms]">
-            <span className="text-white text-[11px] md:text-xs uppercase font-black tracking-[0.5em] inline-block text-shadow-subtle opacity-90">
-              MORERÉ • BOIPEBA • BAHIA
-            </span>
-          </div>
-          <h1 className="font-serif text-6xl md:text-8xl lg:text-9xl text-white mb-12 leading-none text-shadow-premium max-w-7xl animate-in fade-in slide-in-from-bottom-10 duration-[1500ms] delay-300 font-bold tracking-tightest">
+        {/* Content */}
+        <div className="relative h-full flex flex-col justify-center items-center text-center px-6 max-w-6xl mx-auto pt-24">
+          <span className="text-white/80 text-[11px] uppercase font-semibold tracking-[0.5em] mb-8 animate-fade-in-up">
+            Moreré • Boipeba • Bahia
+          </span>
+
+          <h1
+            className="font-serif text-5xl md:text-7xl lg:text-8xl text-white mb-8 leading-none text-shadow-premium max-w-5xl font-medium tracking-tight animate-fade-in-up"
+            style={{ animationDelay: '200ms' }}
+          >
             {t.hero.title}
           </h1>
-          <p className="text-sand-100 text-xl md:text-3xl max-w-4xl mb-20 font-light leading-relaxed-extra text-shadow-subtle animate-in fade-in slide-in-from-bottom-12 duration-[1500ms] delay-500">
+
+          <p
+            className="text-white/80 text-lg md:text-2xl max-w-3xl mb-16 font-light leading-relaxed animate-fade-in-up"
+            style={{ animationDelay: '400ms' }}
+          >
             {t.hero.subtitle}
           </p>
-          <div className="flex flex-col sm:flex-row gap-8 animate-in fade-in zoom-in-95 duration-[1500ms] delay-700">
+
+          <div
+            className="flex flex-col sm:flex-row gap-5 animate-fade-in-up"
+            style={{ animationDelay: '600ms' }}
+          >
             <Link
               to="/booking"
-              className="px-16 py-7 bg-white text-ocean-900 font-black text-[10px] uppercase tracking-luxury shadow-premium hover:bg-sand-50 transition-all duration-700 hover:-translate-y-2 hover:shadow-premium-hover"
+              className="px-10 py-5 bg-white text-ocean-900 font-semibold text-[11px] uppercase tracking-[0.15em] hover-lift shadow-premium rounded-sm"
             >
               {t.hero.cta1}
             </Link>
             <Link
               to="/house"
-              className="px-16 py-7 bg-white/5 backdrop-blur-xl text-white font-black text-[10px] uppercase tracking-luxury hover:bg-white hover:text-ocean-900 transition-all duration-700 shadow-premium hover:-translate-y-2 hover:shadow-premium-hover"
+              className="px-10 py-5 bg-white/10 backdrop-blur-md text-white font-semibold text-[11px] uppercase tracking-[0.15em] border border-white/20 hover:bg-white hover:text-ocean-900 transition-all duration-500 hover-lift rounded-sm"
             >
               {t.hero.cta2}
             </Link>
           </div>
         </div>
 
-        <div className="absolute bottom-16 left-1/2 -translate-x-1/2 text-white/40 flex flex-col items-center gap-6 animate-bounce duration-[3000ms]">
-          <span className="text-[9px] font-black uppercase tracking-[0.6em]">Explore</span>
-          <div className="w-px h-24 bg-gradient-to-b from-white/40 to-transparent"></div>
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 animate-float">
+          <span className="text-white/50 text-[9px] uppercase tracking-[0.3em] font-medium">Explore</span>
+          <div className="w-px h-12 bg-gradient-to-b from-white/50 to-transparent" />
         </div>
       </section>
 
       {/* Highlights Bar */}
-      <section className="bg-ocean text-sand-50 py-40 relative z-10 shadow-premium">
-        <div className="max-w-7xl mx-auto px-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-24 lg:gap-16">
+      <section className="bg-ocean text-white py-24 md:py-32 relative z-10">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
             {[
               { icon: Waves, title: t.highlights.beachfront, desc: "The Atlantic at your door" },
               { icon: Users, title: t.highlights.capacity, desc: "Room for shared memories" },
-              { icon: Sun, title: t.highlights.bedrooms, desc: "Eco-Architectural rest" },
+              { icon: Sun, title: t.highlights.bedrooms, desc: "Eco-architectural rest" },
               { icon: Wind, title: t.highlights.service, desc: "Personalized island care" }
             ].map((h, i) => (
-              <div key={i} className="flex flex-col items-center text-center space-y-8 group">
-                <div className="w-20 h-20 flex items-center justify-center rounded-full bg-white/5 transition-all duration-700 group-hover:bg-white/10 group-hover:scale-110">
-                  <h.icon className="w-8 h-8 text-sunlight transition-transform duration-700" />
+              <div key={i} className="flex flex-col items-center text-center group">
+                <div className="w-14 h-14 flex items-center justify-center rounded-full bg-white/5 mb-6 transition-all duration-500 group-hover:bg-white/10 group-hover:scale-110">
+                  <h.icon className="w-6 h-6 text-sunlight" />
                 </div>
-                <div>
-                  <h3 className="font-serif text-3xl mb-4 leading-tight font-medium tracking-tight text-white">{h.title}</h3>
-                  <div className="h-px w-8 bg-sunlight/30 mx-auto mb-4 group-hover:w-16 transition-all duration-700"></div>
-                  <p className="text-[10px] uppercase font-black tracking-luxury text-sand-200/60">{h.desc}</p>
-                </div>
+                <h3 className="font-serif text-xl md:text-2xl mb-2 leading-snug font-medium">{h.title}</h3>
+                <div className="w-6 h-px bg-sunlight/40 mb-3 group-hover:w-10 transition-all duration-500" />
+                <p className="text-[10px] uppercase tracking-[0.2em] text-white/50 font-medium">{h.desc}</p>
               </div>
             ))}
           </div>
@@ -81,16 +93,17 @@ const Home: React.FC = () => {
       </section>
 
       {/* Intro Story */}
-      <section className="py-64 bg-offwhite overflow-hidden relative">
-        <div className="max-w-screen-xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-12 gap-32 items-center">
-          <div className="lg:col-span-5 space-y-16 relative z-10">
-            <div className="space-y-8">
-              <span className="text-sunlight font-black text-[10px] uppercase tracking-[0.4em] block border-l-2 border-sunlight pl-6">The Essence</span>
-              <h2 className="font-serif text-6xl md:text-7xl lg:text-8xl text-ocean-900 leading-[0.9] font-black tracking-tightest">
-                Where the <span className="italic font-normal text-sea font-serif">tide sets</span> the pace.
+      <section className="py-32 md:py-48 bg-offwhite overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24 items-center">
+          {/* Text */}
+          <div className="space-y-10 order-2 lg:order-1">
+            <div className="space-y-6">
+              <span className="text-sunlight font-semibold text-[11px] uppercase tracking-[0.3em] border-l-2 border-sunlight pl-4">The Essence</span>
+              <h2 className="font-serif text-4xl md:text-6xl lg:text-7xl text-ocean-900 leading-none font-medium tracking-tight">
+                Where the <span className="italic text-sea">tide sets</span> the pace
               </h2>
             </div>
-            <div className="space-y-12 text-gray-600 leading-relaxed-extra text-xl font-light">
+            <div className="space-y-6 text-gray-600 text-lg md:text-xl font-light leading-relaxed max-w-lg">
               <p>
                 Casa Carolina Moreré is a sanctuary of wood and wind. Located in the quietest enclave of Boipeba, our home offers the ultimate luxury: absolute disconnect from the digital noise.
               </p>
@@ -98,19 +111,26 @@ const Home: React.FC = () => {
                 Step out of your room directly onto the sand. Swim in coral-protected reefs. Live the true rhythm of Bahia.
               </p>
             </div>
-            <div className="pt-8">
-              <Link to="/house" className="inline-flex items-center gap-12 text-ocean-900 font-black text-[10px] uppercase tracking-luxury group border-b border-ocean/10 pb-8 hover:border-sunlight transition-all duration-700">
-                Step inside the house
-                <ArrowRight className="w-5 h-5 transition-transform duration-500 group-hover:translate-x-6 text-sunlight" />
-              </Link>
-            </div>
+            <Link
+              to="/house"
+              className="inline-flex items-center gap-4 text-ocean-900 font-semibold text-[11px] uppercase tracking-[0.15em] group underline-anim pb-2"
+            >
+              Step inside the house
+              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-2 text-sunlight" />
+            </Link>
           </div>
-          <div className="lg:col-span-7 relative">
-            <div className="aspect-[3/4] bg-sand-200 overflow-hidden shadow-premium relative z-10 group rounded-sm">
-              <img src={`${baseUrl}maison%20sur%20la%20plage.JPG`} alt="House from beach" className="w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-105" />
-              <div className="absolute inset-0 bg-black/10 transition-opacity duration-1000 group-hover:opacity-0"></div>
+
+          {/* Image */}
+          <div className="relative order-1 lg:order-2">
+            <div className="aspect-[4/5] image-reveal rounded-sm shadow-premium">
+              <img
+                src={`${baseUrl}maison%20sur%20la%20plage.JPG`}
+                alt="House from beach"
+                className="w-full h-full object-cover"
+              />
             </div>
-            <div className="absolute -bottom-32 -left-32 w-full h-full bg-white z-0 hidden lg:block border border-gray-100/50"></div>
+            {/* Decorative element */}
+            <div className="absolute -bottom-8 -left-8 w-32 h-32 border border-sunlight/20 rounded-sm hidden lg:block" />
           </div>
         </div>
       </section>
