@@ -15,7 +15,7 @@ const TheHouse: React.FC = () => {
       description: "The ground floor is designed as a vast open-air pavilion. It seamlessly connects the gourmet kitchen and the main lounge directly to the beach deck, allowing the sea breeze to flow freely throughout.",
       images: [
         { url: "salonprincipal.jpeg", label: "Main Lounge", span: "col-span-2 row-span-2 md:col-span-3 md:row-span-2" },
-        { url: "cuisine.jpg", label: "Chef's Kitchen", span: "col-span-1 row-span-1 md:col-span-1 md:row-span-1" },
+        { url: "IslandImage4081.jpg", label: "Island View", span: "col-span-1 row-span-1 md:col-span-1 md:row-span-1" },
         { url: "TerrasseEnBas.jpeg", label: "Beach Deck", span: "col-span-1 row-span-1 md:col-span-1 md:row-span-1" },
         { url: "deuxiemesalon.jpeg", label: "Second Lounge", span: "col-span-2 row-span-1 md:col-span-2 md:row-span-1" },
         { url: "salon2.jpeg", label: "Lounge Detail", span: "col-span-1 row-span-1 md:col-span-1 md:row-span-1" },
@@ -28,7 +28,7 @@ const TheHouse: React.FC = () => {
       subtitle: "The Master Suites & Bedrooms",
       description: "Five distinct sleeping areas crafted with local wood and natural fibers. Each room is positioned to catch the Atlantic trade winds, providing natural cooling and the sound of waves.",
       images: [
-        { url: "Chambre%201.jpg", label: "Suite One", span: "col-span-2 row-span-2 md:col-span-2 md:row-span-2" },
+        { url: "IslandImage6983.jpg", label: "Suite One", span: "col-span-2 row-span-2 md:col-span-2 md:row-span-2" },
         { url: "Chambre%202.JPG", label: "Suite Two", span: "col-span-2 row-span-1 md:col-span-2 md:row-span-1" },
         { url: "chambre%204.jpg", label: "Ocean View Room", span: "col-span-1 row-span-1 md:col-span-1 md:row-span-1" },
         { url: "chambre%205.JPG", label: "Garden Suite", span: "col-span-1 row-span-1 md:col-span-1 md:row-span-1" },
@@ -41,10 +41,10 @@ const TheHouse: React.FC = () => {
       subtitle: "Craftsmanship & Bathrooms",
       description: "Luxury is in the details. Hand-finished wood, stone bathrooms, and solar-heated water ensure comfort in harmony with the environment.",
       images: [
-        { url: "SDB.jpg", label: "Master Bathroom", span: "col-span-2 row-span-2 md:col-span-3 md:row-span-2" },
-        { url: "SDB%202.jpg", label: "Guest Bath", span: "col-span-1 row-span-1 md:col-span-1 md:row-span-1" },
-        { url: "sdb%20nous.jpg", label: "Personal Touches", span: "col-span-1 row-span-1 md:col-span-1 md:row-span-1" },
-        { url: "sddouche%20rdc.JPG", label: "Rain Showers", span: "col-span-2 row-span-1 md:col-span-4 md:row-span-1" }
+        { url: "SDB.jpg", label: "Master Bathroom", span: "col-span-2 row-span-2 md:col-span-2 md:row-span-2" },
+        { url: "SDB%202.jpg", label: "Guest Bath", span: "col-span-2 row-span-1 md:col-span-2 md:row-span-1" },
+        { url: "sdb%20nous.jpg", label: "Personal Touches", span: "col-span-2 row-span-1 md:col-span-2 md:row-span-1" },
+        { url: "IslandImage7271.jpg", label: "Rain View", span: "col-span-2 row-span-1 md:col-span-2 md:row-span-1" }
       ]
     },
     {
@@ -53,7 +53,8 @@ const TheHouse: React.FC = () => {
       subtitle: "First Floor & Terraces",
       description: "The upper deck offers a unique vantage point over the Moreré reef. It is the perfect spot for morning yoga or evening stargazing.",
       images: [
-        { url: "Vue%20depuis%20la%20terrasse%20du%201er%20e%CC%81tage.jpg", label: "Infinite Horizon", span: "col-span-2 row-span-2 md:col-span-4 md:row-span-2" }
+        { url: "Vue%20depuis%20la%20terrasse%20du%201er%20e%CC%81tage.jpg", label: "Infinite Horizon", span: "col-span-2 row-span-2 md:col-span-2 md:row-span-2" },
+        { url: "IslandImage9290.jpg", label: "Terrace View", span: "col-span-2 row-span-2 md:col-span-2 md:row-span-2" }
       ]
     }
   ];

@@ -24,7 +24,7 @@ const Experience: React.FC = () => {
       title: "Ocean Wonders",
       tag: "Marine Life",
       desc: "Explore the natural pools (Piscines Naturelles) teeming with tropical fish, or witness the majestic humpback whales that visit our coast during the winter months.",
-      images: ["piscine%20naturelle.jpg", "baleine.jpg", "mangrove.jpg"]
+      images: ["IslandImage4598.jpg", "IslandImage4790.jpg", "mangrove.jpg"]
     }
   ];
 
