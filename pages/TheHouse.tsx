@@ -89,8 +89,8 @@ const TheHouse: React.FC = () => {
       id: "upper",
       ...t.sections.upper,
       images: [
-        { url: "Vue%20depuis%20la%20terrasse%20du%201er%20e%CC%81tage.jpg", span: "col-span-2 row-span-2" },
-        { url: "panorama%20rdc.jpg", span: "col-span-2 row-span-1" }
+        { url: "IslandImage3606.jpg", span: "col-span-2 row-span-2" },
+        { url: "IslandImage3212.jpg", span: "col-span-2 row-span-1" }
       ]
     }
   ];
